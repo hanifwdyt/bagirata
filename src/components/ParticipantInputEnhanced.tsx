@@ -367,7 +367,7 @@ export default function ParticipantInputEnhanced({
                     <label className="block text-sm font-medium text-light-text dark:text-dark-text mb-2">
                       Jumlah (Rupiah)
                       {!amountValid && participant.amount > 0 && (
-                        <span className="text-red-500 text-xs ml-1">*harus > 0</span>
+                        <span className="text-red-500 text-xs ml-1">*harus &gt; 0</span>
                       )}
                     </label>
                     
@@ -389,7 +389,9 @@ export default function ParticipantInputEnhanced({
                     <div className="relative">
                       <span className="absolute left-3 top-3 text-light-muted dark:text-dark-muted">Rp</span>
                       <input
-                        ref={el => amountRefs.current[participant.id] = el}
+                        ref={el => {
+                          if (el) amountRefs.current[participant.id] = el
+                        }}
                         type="text"
                         placeholder="0"
                         value={participant.amount ? formatCurrency(participant.amount) : ''}

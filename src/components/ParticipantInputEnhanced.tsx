@@ -334,7 +334,9 @@ export default function ParticipantInputEnhanced({
                     </label>
                     <div className="relative">
                       <input
-                        ref={el => nameRefs.current[participant.id] = el}
+                        ref={el => {
+                          if (el) nameRefs.current[participant.id] = el
+                        }}
                         type="text"
                         placeholder="Masukkan nama"
                         value={participant.name}

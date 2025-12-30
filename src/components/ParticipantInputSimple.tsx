@@ -30,7 +30,7 @@ export default function ParticipantInputSimple({
   // Auto-save to localStorage
   useEffect(() => {
     const autoSave = setTimeout(() => {
-      if (participants.some(p => p.name.trim() || p.amount > 0)) {
+      if (participants.some(p => p.name.trim() || p.amount >= 0)) {
         localStorage.setItem('bagirata-draft', JSON.stringify({
           participants,
           timestamp: Date.now()
@@ -110,7 +110,7 @@ export default function ParticipantInputSimple({
     e.preventDefault()
     
     const validParticipants = participants.filter(p => 
-      p.name.trim() && p.amount > 0
+      p.name.trim() && p.amount >= 0
     )
     
     if (validParticipants.length < 2) {
